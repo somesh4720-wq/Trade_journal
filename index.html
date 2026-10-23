@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="Private, mobile-first trading journal for NIFTY and BANKNIFTY futures and options.">
+<link rel="manifest" href="manifest.json">
+<title>TradeMind — AI Trading Journal</title>
+<style>
+:root{--bg:#08101d;--panel:#111c2d;--panel2:#17243a;--line:#26364e;--text:#edf3ff;--muted:#91a2bd;--green:#35d39a;--red:#ff7185;--blue:#7ca8ff;--amber:#ffc76b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#142440 0,#08101d 55%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:700;background:var(--blue);color:#07101e}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}button.danger{background:#482332;color:#ffdce2}button.small{padding:7px 10px;font-size:12px}.wrap{max-width:1100px;margin:auto;padding:16px 14px 90px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 0 18px}.brand{font-size:21px;font-weight:850;letter-spacing:-.6px}.brand span{color:var(--green)}.sub{color:var(--muted);font-size:12px;margin-top:3px}.badge{font-size:11px;color:var(--green);border:1px solid #23644f;background:#103126;padding:6px 9px;border-radius:20px;white-space:nowrap}.tabs{display:flex;gap:7px;overflow:auto;padding:3px 0 14px}.tab{background:transparent;color:var(--muted);border:1px solid var(--line);white-space:nowrap;padding:9px 13px}.tab.active{background:var(--blue);color:#07101e;border-color:var(--blue)}.view{display:none}.view.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,#142238,#101a2b);border:1px solid var(--line);border-radius:17px;padding:15px;min-width:0}.metric-label{font-size:12px;color:var(--muted)}.metric{font-size:23px;font-weight:800;letter-spacing:-.6px;margin-top:7px;overflow-wrap:anywhere}.positive{color:var(--green)}.negative{color:var(--red)}.muted{color:var(--muted)}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 11px}.sectionhead h2{font-size:17px;margin:0}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#091321;color:var(--text);border:1px solid #30415c;border-radius:10px;padding:11px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--blue)}textarea{min-height:76px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{border-collapse:collapse;width:100%;min-width:650px;background:#0e1929}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--muted);font-weight:600;background:#142238}tr:last-child td{border-bottom:0}.empty{text-align:center;color:var(--muted);padding:26px}.notice{border:1px solid #66532b;background:#302819;color:#ffe2a6;padding:12px;border-radius:12px;font-size:12px;line-height:1.5}.hint{font-size:12px;color:var(--muted);line-height:1.5}.pill{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:5px 9px;font-size:11px;color:var(--muted)}.resultbox{white-space:pre-wrap;line-height:1.65;background:#091321;border:1px solid var(--line);border-radius:13px;padding:14px;margin-top:12px}.barrow{display:grid;grid-template-columns:85px 1fr 65px;gap:9px;align-items:center;margin:10px 0;font-size:12px}.bar{height:9px;background:#25344a;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{border:1px solid var(--line);background:#111c2d;min-height:58px;border-radius:9px;padding:6px 3px;text-align:center;font-size:11px}.day .num{font-weight:700}.day.pos{background:#103327;border-color:#23644f}.day.neg{background:#3a1c29;border-color:#703346}.day small{display:block;margin-top:5px;overflow-wrap:anywhere}.foot{text-align:center;color:var(--muted);font-size:11px;margin-top:24px}.hidden{display:none!important}
+@media(max-width:650px){.wrap{padding:12px 10px 85px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{font-size:21px}.card{padding:13px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{align-items:flex-start}.brand{font-size:19px}.sectionhead{margin-top:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div><div class="brand">Trade<span>Mind</span> <span style="color:var(--text);font-weight:500">Journal</span></div><div class="sub">Your trades. Your data. Better decisions.</div></div><span class="badge">● LOCAL-FIRST</span></header>
+<nav class="tabs">
+<button class="tab active" data-view="dashboard">Dashboard</button><button class="tab" data-view="add">＋ Add trade</button><button class="tab" data-view="history">Trade history</button><button class="tab" data-view="review">AI review</button><button class="tab" data-view="settings">Settings & backup</button>
+</nav>
+<section id="dashboard" class="view active">
+<div class="grid">
+<div class="card"><div class="metric-label">Today's net P&L</div><div id="todayPnl" class="metric">₹0</div></div>
+<div class="card"><div class="metric-label">All-time net P&L</div><div id="totalPnl" class="metric">₹0</div></div>
+<div class="card"><div class="metric-label">Win rate</div><div id="winRate" class="metric">0%</div></div>
+<div class="card"><div class="metric-label">Closed trades</div><div id="tradeCount" class="metric">0</div></div>
+<div class="card"><div class="metric-label">Gross profit</div><div id="grossProfit" class="metric positive">₹0</div></div>
+<div class="card"><div class="metric-label">Gross loss</div><div id="grossLoss" class="metric negative">₹0</div></div>
+<div class="card"><div class="metric-label">Profit factor</div><div id="profitFactor" class="metric">—</div></div>
+<div class="card"><div class="metric-label">Average net/trade</div><div id="avgPnl" class="metric">₹0</div></div>
+</div>
+<div class="sectionhead"><h2>Recent trades</h2><button class="secondary small" onclick="showView('history')">View all →</button></div>
+<div class="tablewrap"><table><thead><tr><th>Date</th><th>Instrument</th><th>Type</th><th>Strategy</th><th>Net P&L</th></tr></thead><tbody id="recentRows"></tbody></table></div>
+<div class="sectionhead"><h2>Strategy snapshot</h2></div><div class="card" id="strategySnapshot"><div class="empty">Add trades to see which strategies are working in your own records.</div></div>
+<div class="notice" style="margin-top:15px">Journal insights describe your recorded history; they do not predict the market or guarantee future profits. Keep your stop-loss and risk limits independent of AI suggestions.</div>
+</section>
+
+<section id="add" class="view">
+<div class="sectionhead"><h2 id="formTitle">Record a trade</h2><span class="pill">NIFTY • BANKNIFTY • Futures & options</span></div>
+<div class="card">
+<form id="tradeForm">
+<input type="hidden" id="tradeId">
+<div class="formgrid">
+<div class="field"><label for="date">Trade date *</label><input id="date" type="date" required></div>
+<div class="field"><label for="instrument">Instrument *</label><select id="instrument"><option>NIFTY</option><option>BANKNIFTY</option><option>Other</option></select></div>
+<div class="field"><label for="market">Market type *</label><select id="market"><option>Options</option><option>Futures</option></select></div>
+<div class="field"><label for="direction">Position *</label><select id="direction"><option>Long / Buy</option><option>Short / Sell</option></select></div>
+<div class="field"><label for="optionType">Option type (if applicable)</label><select id="optionType"><option value="">Not applicable</option><option>Call (CE)</option><option>Put (PE)</option></select></div>
+<div class="field"><label for="strike">Strike price (optional)</label><input id="strike" type="number" step="any" placeholder="e.g. 25000"></div>
+<div class="field"><label for="entry">Entry price *</label><input id="entry" type="number" min="0" step="any" required placeholder="0.00"></div>
+<div class="field"><label for="exit">Exit price *</label><input id="exit" type="number" min="0" step="any" required placeholder="0.00"></div>
+<div class="field"><label for="qty">Total quantity *</label><input id="qty" type="number" min="1" step="1" required placeholder="Enter total traded quantity"></div>
+<div class="field"><label for="charges">Charges (₹)</label><input id="charges" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="stop">Planned stop-loss price</label><input id="stop" type="number" min="0" step="any" placeholder="Optional"></div>
+<div class="field"><label for="target">Planned target price</label><input id="target" type="number" min="0" step="any" placeholder="Optional"></div>
+<div class="field"><label for="strategy">Strategy *</label><select id="strategy"><option>Breakout</option><option>Pullback</option><option>Support / Resistance</option><option>Trend following</option><option>Reversal</option><option>Scalping</option><option>Other</option></select></div>
+<div class="field"><label for="setup">Setup quality (your assessment)</label><select id="setup"><option>Followed my plan</option><option>Partly followed plan</option><option>Broke my rules</option><option>Unsure</option></select></div>
+<div class="field full"><label for="reason">Why did you enter this trade?</label><textarea id="reason" placeholder="Signal, market structure, confirmation, context..."></textarea></div>
+<div class="field full"><label for="emotion">Emotions / execution notes</label><textarea id="emotion" placeholder="Fear, FOMO, patience, moved stop-loss, early exit..."></textarea></div>
+<div class="field full"><label for="lesson">Why do you think it won/lost? What will you learn?</label><textarea id="lesson" placeholder="Your own review. Be honest and specific."></textarea></div>
+</div>
+<div class="sectionhead"><h2>Calculated result</h2></div><div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="card"><div class="metric-label">Gross P&L</div><div id="previewGross" class="metric">₹0</div></div><div class="card"><div class="metric-label">Net P&L after charges</div><div id="previewNet" class="metric">₹0</div></div></div>
+<div class="actions"><button type="submit">Save trade</button><button type="button" class="secondary" onclick="resetForm()">Clear form</button></div>
+<p class="hint">Enter total quantity, not just number of lots. For example, 2 lots × 75 units = 150 quantity (use the actual lot size applicable to your contract). For a long position, gross P&L = (exit − entry) × quantity; for a short position, the price difference is reversed.</p>
+</form></div>
+</section>
+
+<section id="history" class="view">
+<div class="sectionhead"><h2>Trade history</h2><div class="row"><button class="secondary small" onclick="exportCSV()">Export CSV</button><button class="secondary small" onclick="showView('add')">＋ Add</button></div></div>
+<div class="row" style="margin-bottom:12px"><input id="searchTrades" placeholder="Search instrument, strategy, notes…" style="flex:1;min-width:160px"><select id="filterOutcome" style="width:auto"><option value="all">All results</option><option value="win">Wins</option><option value="loss">Losses</option><option value="breakeven">Breakeven</option></select></div>
+<div class="tablewrap"><table><thead><tr><th>Date</th><th>Instrument</th><th>Market / position</th><th>Strategy</th><th>Net P&L</th><th>Actions</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+</section>
+
+<section id="review" class="view">
+<div class="sectionhead"><h2>AI trading coach</h2><span class="pill">Journal-based review</span></div>
+<div class="notice">AI analysis is educational, can be wrong, and cannot guarantee profits. It is not a live signal service. Do not share broker passwords, OTPs, or API trading credentials.</div>
+<div class="card" style="margin-top:12px">
+<div class="field"><label for="question">What would you like to review?</label><textarea id="question" placeholder="Example: What mistakes appear most often in my losing trades? Compare my futures and options results."></textarea></div>
+<div class="actions"><button onclick="askAI()">Ask AI about my journal</button><button class="secondary" onclick="quickReview()">Generate journal review</button></div>
+<div id="aiOutput" class="resultbox">Your AI review will appear here. Configure an AI API key in Settings to enable live AI responses. Journal statistics and rule-based insights work without an API key.</div>
+<div class="hint" style="margin-top:10px">AI uses the journal summary sent with your question. If you use an API provider, that data leaves your phone and is subject to that provider's terms and privacy policy.</div>
+</div>
+<div class="sectionhead"><h2>Automatic pattern checks</h2></div><div id="patterns" class="card"><div class="empty">Record trades to reveal journal patterns.</div></div>
+</section>
+
+<section id="settings" class="view">
+<div class="sectionhead"><h2>Settings & backup</h2></div>
+<div class="card">
+<h3 style="margin-top:0">AI connection (optional)</h3>
+<p class="hint">For a personal prototype, you can connect a compatible Gemini API key. API availability, free quotas and terms may change. A key saved in this browser is not protected like a server-side secret—use it only on a private device and never publish it with your app.</p>
+<div class="field"><label for="apiKey">Gemini API key</label><input id="apiKey" type="password" autocomplete="off" placeholder="Paste API key here (optional)"></div>
+<div class="field" style="margin-top:10px"><label for="model">Model name</label><input id="model" value="gemini-2.5-flash" placeholder="Model supported by your API account"></div>
+<div class="actions"><button onclick="saveAISettings()">Save AI settings</button><button class="secondary" onclick="clearAISettings()">Remove key</button></div>
+<p class="hint">Get/manage keys from Google's official <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:var(--blue)">AI Studio</a>. Never paste your broker password or trading API secret here.</p>
+</div>
+<div class="card" style="margin-top:12px">
+<h3 style="margin-top:0">Back up your journal</h3><p class="hint">Your trades are stored in this browser on this device. Export a JSON backup regularly. Clearing browser data can delete your journal.</p>
+<div class="actions"><button onclick="exportJSON()">Download JSON backup</button><label class="secondary" style="padding:11px 14px;border-radius:12px;cursor:pointer;color:var(--text);border:1px solid var(--line)">Import backup<input type="file" id="importFile" accept=".json,application/json" class="hidden" onchange="importJSON(event)"></label><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+</div>
+<div class="card" style="margin-top:12px">
+<h3 style="margin-top:0">Daily loss limit reminder</h3><div class="field"><label for="lossLimit">Your chosen daily loss limit (₹)</label><input id="lossLimit" type="number" min="0" step="any" placeholder="e.g. 500"></div><div class="actions"><button onclick="saveLimit()">Save limit</button></div><div id="limitStatus" class="hint"></div>
+</div>
+<div class="card" style="margin-top:12px;border-color:#703346"><h3 style="margin-top:0">Danger zone</h3><p class="hint">This permanently removes trades stored in this browser. Export a backup first.</p><button class="danger" onclick="clearAllTrades()">Delete all trades</button></div>
+</section>
+<div class="foot">TradeMind Journal • Personal recordkeeping tool • Not financial advice</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='trademind_trades_v1', SETTINGS='trademind_settings_v1';
+let trades=loadTrades(), editingId=null;
+function loadTrades(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}}
+function saveTrades(){localStorage.setItem(KEY,JSON.stringify(trades));renderAll()}
+function settings(){try{return JSON.parse(localStorage.getItem(SETTINGS)||'{}')}catch{return {}}}
+function money(n){return (n<0?'−':'')+'₹'+Math.abs(n||0).toLocaleString('en-IN',{maximumFractionDigits:2,minimumFractionDigits:0})}
+function net(t){return Number(t.gross||0)-Number(t.charges||0)}
+function cls(n){return n>0?'positive':n<0?'negative':''}
+function todayISO(){let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function calcPreview(){let e=+$('entry').value||0,x=+$('exit').value||0,q=+$('qty').value||0,c=+$('charges').value||0;let g=($('direction').value==='Long / Buy'?x-e:e-x)*q; $('previewGross').textContent=money(g);$('previewGross').className='metric '+cls(g);$('previewNet').textContent=money(g-c);$('previewNet').className='metric '+cls(g-c)}
+['entry','exit','qty','charges','direction'].forEach(id=>$(id).addEventListener('input',calcPreview));
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='add'&&!editingId&& !$('date').value)$('date').value=todayISO();if(id==='review')renderPatterns();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+function resetForm(){editingId=null;$('tradeForm').reset();$('tradeId').value='';$('date').value=todayISO();$('formTitle').textContent='Record a trade';$('charges').value='0';calcPreview()}
+$('tradeForm').addEventListener('submit',e=>{e.preventDefault();let id=editingId||String(Date.now());let entry=+$('entry').value,exit=+$('exit').value,qty=+$('qty').value,charges=+$('charges').value||0;let gross=($('direction').value==='Long / Buy'?exit-entry:entry-exit)*qty;let t={id,date:$('date').value,instrument:$('instrument').value,market:$('market').value,direction:$('direction').value,optionType:$('optionType').value,strike:$('strike').value,entry,exit,qty,charges,stop:$('stop').value,target:$('target').value,strategy:$('strategy').value,setup:$('setup').value,reason:$('reason').value,emotion:$('emotion').value,lesson:$('lesson').value,gross,createdAt:new Date().toISOString()};if(editingId)trades=trades.map(a=>a.id===editingId?t:a);else trades.unshift(t);saveTrades();resetForm();showView('dashboard');alert('Trade saved.');});
+function renderAll(){trades.sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||'').localeCompare(a.createdAt||''));let closed=trades.filter(t=>Number.isFinite(net(t)));let total=closed.reduce((s,t)=>s+net(t),0),day=closed.filter(t=>t.date===todayISO()).reduce((s,t)=>s+net(t),0),wins=closed.filter(t=>net(t)>0),losses=closed.filter(t=>net(t)<0),gp=wins.reduce((s,t)=>s+net(t),0),gl=Math.abs(losses.reduce((s,t)=>s+net(t),0));$('todayPnl').textContent=money(day);$('todayPnl').className='metric '+cls(day);$('totalPnl').textContent=money(total);$('totalPnl').className='metric '+cls(total);$('winRate').textContent=(closed.length?(wins.length/closed.length*100):0).toFixed(1)+'%';$('tradeCount').textContent=closed.length;$('grossProfit').textContent=money(gp);$('grossLoss').textContent=money(-gl);$('profitFactor').textContent=gl? (gp/gl).toFixed(2):(gp?'∞':'—');$('avgPnl').textContent=money(closed.length?total/closed.length:0);$('avgPnl').className='metric '+cls(total);
+$('recentRows').innerHTML=closed.slice(0,5).map(t=>`<tr><td>${esc(t.date)}</td><td>${esc(t.instrument)} ${esc(t.optionType||'')}</td><td>${esc(t.market)}</td><td>${esc(t.strategy)}</td><td class="${cls(net(t))}">${money(net(t))}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">No trades yet. Tap “Add trade” to record your first one.</td></tr>';
+renderHistory();renderStrategy();updateLimitStatus();renderPatterns()}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderHistory(){let q=($('searchTrades')?.value||'').toLowerCase(),f=$('filterOutcome')?.value||'all';let arr=trades.filter(t=>(JSON.stringify(t).toLowerCase().includes(q))&&(f==='all'||(f==='win'&&net(t)>0)||(f==='loss'&&net(t)<0)||(f==='breakeven'&&net(t)===0)));$('historyRows').innerHTML=arr.map(t=>`<tr><td>${esc(t.date)}</td><td>${esc(t.instrument)} ${esc(t.optionType||'')} ${esc(t.strike||'')}</td><td>${esc(t.market)}<br><span class="muted">${esc(t.direction)}</span></td><td>${esc(t.strategy)}</td><td class="${cls(net(t))}">${money(net(t))}</td><td><div class="row"><button class="secondary small" onclick="editTrade('${t.id}')">Edit</button><button class="danger small" onclick="deleteTrade('${t.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No matching trades.</td></tr>'}
+$('searchTrades').addEventListener('input',renderHistory);$('filterOutcome').addEventListener('change',renderHistory);
+function editTrade(id){let t=trades.find(t=>t.id===id);if(!t)return;editingId=id;showView('add');$('formTitle').textContent='Edit trade';Object.keys(t).forEach(k=>{let el=$(k);if(el)el.value=t[k]??''});calcPreview()}
+function deleteTrade(id){if(confirm('Delete this trade?')){trades=trades.filter(t=>t.id!==id);saveTrades()}}
+function renderStrategy(){let map={};trades.forEach(t=>{let s=t.strategy||'Other';map[s]??={n:0,p:0,w:0};map[s].n++;map[s].p+=net(t);if(net(t)>0)map[s].w++});let entries=Object.entries(map).sort((a,b)=>b[1].p-a[1].p);$('strategySnapshot').innerHTML=entries.length?entries.map(([s,v])=>`<div class="barrow"><span>${esc(s)}</span><div class="bar"><i style="width:${Math.min(100,Math.max(0,v.n?100*v.w/v.n:0))}%"></i></div><span class="${cls(v.p)}" style="text-align:right">${money(v.p)}</span></div>`).join(''):'<div class="empty">Add trades to see which strategies are working in your own records.</div>'}
+function renderPatterns(){if(!trades.length){$('patterns').innerHTML='<div class="empty">Record trades to reveal journal patterns.</div>';return}let arr=[];let losses=trades.filter(t=>net(t)<0),wins=trades.filter(t=>net(t)>0);if(losses.length)arr.push(`You have ${losses.length} losing trade(s), totalling ${money(losses.reduce((s,t)=>s+net(t),0))} net.`);if(wins.length)arr.push(`You have ${wins.length} winning trade(s), totalling ${money(wins.reduce((s,t)=>s+net(t),0))} net.`);let broken=trades.filter(t=>t.setup==='Broke my rules');if(broken.length)arr.push(`${broken.length} trade(s) were marked “Broke my rules”; their combined net P&L is ${money(broken.reduce((s,t)=>s+net(t),0))}. Compare these with trades where you followed your plan.`);let by={};trades.forEach(t=>{by[t.strategy]??={n:0,p:0};by[t.strategy].n++;by[t.strategy].p+=net(t)});let strat=Object.entries(by).filter(x=>x[1].n>=2).sort((a,b)=>b[1].p-a[1].p);if(strat.length)arr.push(`Among strategies with at least 2 trades, ${strat[0][0]} has the highest recorded net P&L (${money(strat[0][1].p)}). This small sample is not proof of future performance.`);let emotional=trades.filter(t=>/fomo|revenge|angry|fear|panic|moved stop/i.test((t.emotion||'')+' '+(t.reason||'')));if(emotional.length)arr.push(`${emotional.length} trade(s) mention possible emotional triggers (e.g. fear/FOMO/stop changes). Review these entries to see if a consistent pattern exists.`);$('patterns').innerHTML=arr.map(x=>`<p>• ${esc(x)}</p>`).join('')}
+function journalSummary(){let sum={trades:trades.length,netPnl:trades.reduce((s,t)=>s+net(t),0),wins:trades.filter(t=>net(t)>0).length,losses:trades.filter(t=>net(t)<0).length,records:trades.map(t=>({date:t.date,instrument:t.instrument,market:t.market,direction:t.direction,optionType:t.optionType,strike:t.strike,entry:t.entry,exit:t.exit,qty:t.qty,charges:t.charges,netPnl:net(t),stop:t.stop,target:t.target,strategy:t.strategy,setup:t.setup,reason:t.reason,emotion:t.emotion,lesson:t.lesson})).slice(0,100)};return sum}
+function quickReview(){let s=journalSummary();let by={};trades.forEach(t=>{by[t.strategy]??={n:0,p:0,w:0};by[t.strategy].n++;by[t.strategy].p+=net(t);if(net(t)>0)by[t.strategy].w++});let lines=[`Journal review (${s.trades} trades)`,`Total net P&L: ${money(s.netPnl)}`,`Wins: ${s.wins}; losses: ${s.losses}; win rate: ${s.trades?(s.wins/s.trades*100).toFixed(1):0}%`];Object.entries(by).forEach(([k,v])=>lines.push(`${k}: ${v.n} trades, ${money(v.p)} net, ${(v.w/v.n*100).toFixed(1)}% wins`));let bad=trades.filter(t=>t.setup==='Broke my rules');if(bad.length)lines.push(`Rule-breaking trades: ${bad.length}, net ${money(bad.reduce((s,t)=>s+net(t),0))}.`);lines.push('Review next: compare your written entry reason against the actual setup; check whether planned stop-loss and target were respected; use a larger sample before changing a strategy.');$('aiOutput').textContent=lines.join('\\n');}
+async function askAI(){let s=settings(),key=s.apiKey,model=s.model||'gemini-2.5-flash',q=$('question').value.trim()||'Review my journal: identify possible repeated mistakes, compare strategy results, and suggest process improvements based only on this data.';if(!trades.length){$('aiOutput').textContent='Add at least one trade before asking AI to analyse your journal.';return}if(!key){quickReview();$('aiOutput').textContent+='\\n\\nLive AI is not configured. Add your API key in Settings to enable AI-generated review.';return}let prompt=`You are a cautious trading journal coach, not a signal provider. Review the user's journal records and question. Do not promise profits, predict prices, or recommend a live trade. Clearly separate observed facts from hypotheses, mention small sample limitations, and give practical process-focused questions. Data is in INR. Journal JSON: ${JSON.stringify(journalSummary())}\\nQuestion: ${q}`;$('aiOutput').textContent='Analysing your journal…';try{let r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.3}})});let data=await r.json();if(!r.ok)throw new Error(data.error?.message||`Request failed (${r.status})`);$('aiOutput').textContent=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('\\n')||'No response returned. Check model access and API settings.'}catch(e){$('aiOutput').textContent='AI request failed: '+e.message+'\\nCheck internet, API key, model name and quota. You can still use the built-in journal statistics.'}}
+function saveAISettings(){let s=settings();s.apiKey=$('apiKey').value.trim();s.model=$('model').value.trim()||'gemini-2.5-flash';localStorage.setItem(SETTINGS,JSON.stringify(s));alert('AI settings saved on this device. Keep this device private.')}
+function clearAISettings(){let s=settings();delete s.apiKey;localStorage.setItem(SETTINGS,JSON.stringify(s));$('apiKey').value='';alert('Saved API key removed from this browser.')}
+function exportJSON(){let blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),trades,settings:{lossLimit:settings().lossLimit}},null,2)],{type:'application/json'});download(blob,'trademind-backup-'+todayISO()+'.json')}
+function exportCSV(){let cols=['date','instrument','market','direction','optionType','strike','entry','exit','qty','charges','gross','netPnl','stop','target','strategy','setup','reason','emotion','lesson'];let lines=[cols.join(','),...trades.map(t=>cols.map(c=>csv(c==='netPnl'?net(t):t[c])).join(','))];download(new Blob(['\\ufeff'+lines.join('\\r\\n')],{type:'text/csv;charset=utf-8;'}),'trademind-trades-'+todayISO()+'.csv')}
+function csv(v){let s=String(v??'');return '"'+s.replace(/"/g,'""')+'"'}
+function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result),incoming=Array.isArray(d)?d:d.trades;if(!Array.isArray(incoming))throw Error('Backup does not contain a trades array.');if(confirm(`Import ${incoming.length} trade(s)? This will add them to your current journal.`)){let ids=new Set(trades.map(t=>t.id));incoming.forEach(t=>{if(!ids.has(t.id)){trades.push({...t,id:t.id||String(Date.now()+Math.random())});ids.add(t.id)}});saveTrades();alert('Backup imported.')}}catch(err){alert('Import failed: '+err.message)}e.target.value=''};r.readAsText(f)}
+function saveLimit(){let s=settings();s.lossLimit=Math.max(0,+$('lossLimit').value||0);localStorage.setItem(SETTINGS,JSON.stringify(s));updateLimitStatus();alert('Daily loss limit saved.')}
+function updateLimitStatus(){let l=settings().lossLimit;$('lossLimit').value=l||'';let p=trades.filter(t=>t.date===todayISO()).reduce((s,t)=>s+net(t),0);$('limitStatus').textContent=l?`Today's recorded net P&L: ${money(p)}. `+(p<=-l?'⚠️ Your recorded loss has reached/passed your chosen limit.':'You are '+money(l+p)+' away from the limit if P&L remains negative.'):'Set a personal reminder threshold. This does not block trades.'}
+function clearAllTrades(){if(confirm('Delete every saved trade from this browser? Export a backup first if needed.')&&confirm('Final confirmation: permanently delete all trades?')){trades=[];saveTrades();alert('Trades deleted.')}}
+$('date').value=todayISO();$('apiKey').value=settings().apiKey||'';$('model').value=settings().model||'gemini-2.5-flash';$('lossLimit').value=settings().lossLimit||'';renderAll();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>

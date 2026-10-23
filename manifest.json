@@ -1,0 +1,10 @@
+{
+  "name": "TradeMind AI Trading Journal",
+  "short_name": "TradeMind",
+  "description": "Private trading journal for futures and options.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#08101d",
+  "theme_color": "#0b1220",
+  "icons": []
+}
